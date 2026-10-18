@@ -21,6 +21,10 @@ class StationCard extends StatelessWidget {
               _buildImage(context),
               const SizedBox(width: 12),
               Expanded(child: _buildText(context)),
+              // const Icon(Icons.star_border_outlined , color : Colors.grey),
+              const Icon(Icons.star_purple500_outlined , color : Colors.amber),
+
+              const SizedBox(width: 12),
               const Icon(Icons.chevron_right, color: Colors.grey),
             ],
           ),
