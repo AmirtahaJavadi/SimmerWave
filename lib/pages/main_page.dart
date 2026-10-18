@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simmerwave/models/radio_station.dart';
+import 'package:simmerwave/widgets/station_card.dart';
 
 class RadioLists extends StatefulWidget {
   const RadioLists({super.key});
@@ -10,6 +12,46 @@ class RadioLists extends StatefulWidget {
 class _RadioListsState extends State<RadioLists> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Column(
+        children: [
+          StationCard(
+            station: RadioStation(
+              id: "id",
+              name: "name",
+              streamUrl: "streamUrl",
+            ),
+          ),
+          StationCard(
+            station: RadioStation(
+              id: "id",
+              name: "name",
+              streamUrl: "streamUrl",
+            ),
+          ),
+          StationCard(
+            station: RadioStation(
+              id: "id",
+              name: "name",
+              streamUrl: "streamUrl",
+            ),
+          ),
+          StationCard(
+            station: RadioStation(
+              id: "id",
+              name: "name",
+              streamUrl: "streamUrl",
+            ),
+          ),
+          StationCard(
+            station: RadioStation(
+              id: "id",
+              name: "name",
+              streamUrl: "streamUrl",
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
