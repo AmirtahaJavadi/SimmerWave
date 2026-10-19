@@ -14,7 +14,7 @@ class _headerMainState extends State<headerMain> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text(
-          "Hello there",
+          "SimmerWave",
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
         ),
         Row(

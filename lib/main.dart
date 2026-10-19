@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 import 'package:simmerwave/pages/main_page.dart';
+import 'package:simmerwave/service/hive_radio.dart';
 
-void main() {
+void main () async  {
+    WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await radioService.init(); // open boxes
   runApp(const MyApp());
 }
 
@@ -12,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'SimmerWave',
       theme: ThemeData(
         // This is the theme of your application.
         //

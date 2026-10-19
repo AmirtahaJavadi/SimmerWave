@@ -22,9 +22,9 @@ class TabMenuWidget extends StatelessWidget {
             labelStyle: TextStyle(fontWeight: FontWeight.bold),
             tabs: [
               Tab(text: 'Overview'),
-              Tab(text: 'Songs'),
-              Tab(text: 'Albums'),
-              Tab(text: 'Artist'),
+              Tab(text: 'Radios'),
+              Tab(text: 'Podcasts'),
+              Tab(text: 'FM'),
             ],
           ),
           
@@ -35,7 +35,7 @@ class TabMenuWidget extends StatelessWidget {
                 Center(child: Text('Overview Content')),
                 Center(child: Text('Songs Content')),
                 Center(child: Text('Albums Content')),
-                Center(child: Text('Artist Content')),
+                Center(child: Text('Coming soon')),
               ],
             ),
           ),
