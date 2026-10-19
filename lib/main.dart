@@ -1,10 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_ce_flutter/hive_ce_flutter.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:simmerwave/pages/main_page.dart';
 import 'package:simmerwave/service/hive_radio.dart';
 
-void main () async  {
-    WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  if (!kIsWeb &&
+      (defaultTargetPlatform == TargetPlatform.android ||
+          defaultTargetPlatform == TargetPlatform.iOS)) {
+    await JustAudioBackground.init(
+      androidNotificationChannelId: 'com.your.app.channel.audio',
+      androidNotificationChannelName: 'Audio playback',
+      androidNotificationOngoing: true,
+    );
+  }
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await radioService.init(); // open boxes
   runApp(const MyApp());
@@ -40,5 +51,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

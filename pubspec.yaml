@@ -39,6 +39,8 @@ dependencies:
   xml: ^7.1.0
   hive_ce: ^2.22.0
   hive_ce_flutter: ^2.3.0
+  just_audio: ^0.10.5
+  just_audio_background: ^0.0.1-beta.17
 
 dev_dependencies:
   flutter_test:
