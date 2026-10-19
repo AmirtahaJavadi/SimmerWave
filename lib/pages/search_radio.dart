@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:simmerwave/models/radio_station.dart';
 import 'package:simmerwave/service/radio_api.dart';
+import 'package:simmerwave/widgets/search.dart';
 import 'package:simmerwave/widgets/station_card.dart';
 
 class RadioLists extends StatefulWidget {
@@ -22,6 +23,7 @@ class _RadioListsState extends State<RadioLists> {
     _controller.dispose(); // release the text controller
     super.dispose(); // ← always last
   }
+
   void _onQueryChanged(String text) {
     _debounce?.cancel();
 
@@ -37,36 +39,61 @@ class _RadioListsState extends State<RadioLists> {
     });
   }
 
-    @override
+  @override
   Widget build(BuildContext context) {
-    return 
-      Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(12),
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80), // required height
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(30), // Pill shape
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
             child: TextField(
-              controller: _controller,
               onChanged: _onQueryChanged,
+              controller: _controller,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                hintText: 'Search stations...',
-                prefixIcon: const Icon(Icons.search),
-                suffixIcon: _controller.text.isEmpty
-                    ? null
-                    : IconButton(
-                        icon: const Icon(Icons.clear),
+                hintText: 'Search stations, songs, artists...',
+                hintStyle: TextStyle(color: Colors.grey[500]),
+                prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
+
+                // Show the clear button only if there is text
+                suffixIcon: _controller.text.isNotEmpty
+                    ? IconButton(
+                        icon: Icon(Icons.clear, color: Colors.grey[600]),
                         onPressed: () {
                           _controller.clear();
-                          _onQueryChanged('');
+                          // You can trigger a search reset here if needed
                         },
-                      ),
-                border: const OutlineInputBorder(),
+                      )
+                    : null,
+
+                // Remove the default underline
+                border: InputBorder.none,
+
+                // Adjust padding so the text is vertically centered
+                contentPadding: const EdgeInsets.symmetric(vertical: 16),
               ),
+              onSubmitted: (value) {
+                // Handle the search action when the user presses "Enter" or "Search"
+                debugPrint('Searching for: $value');
+              },
             ),
           ),
-          Expanded(child: _buildResults()),
-        ],
-      );
+        ),
+      ),
+      body: Expanded(child: _buildResults()),
+    );
   }
 
   Widget _buildResults() {
